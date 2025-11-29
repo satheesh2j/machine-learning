@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:db}:${DB_PORT:5432}/${DB_NAME:talentdb}
+    driver-class-name: org.postgresql.Driver
+    username: ${DB_USERNAME:talent}
+    password: ${DB_PASSWORD:talentpassword}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB
+
+openai:
+  apiKey: ${OPENAI_API_KEY:}
+  embeddingModel: text-embedding-3-small
+  chatModel: gpt-4o-mini
+
+server:
+  port: 8080
+
+cors:
+  allowed-origins: "*"
+  allowed-methods: "*"
+
+security:
+  jwt:
+    secret: ${JWT_SECRET:change-me-to-a-long-random-string}
+    expiration-minutes: 120
+
+storage:
+  resume-path: ${STORAGE_RESUME_PATH:./storage/resumes}
